@@ -1,0 +1,18 @@
+{% extends 'manager/base.html' %}
+
+{% block title %}Odbierz przedmiot{% endblock %}
+
+{% block body %}
+<div style="margin-left:8%">
+    <h3>Skontaktuj się z użytkownikiem, który wstawił przedmiot, aby ustalić szczegóły odbioru</h3>
+
+    <h4>Jest on dostępny pod adresem e-mail: {{ item.owner_contact }}</h4>
+
+    <p>Potwierdź aby usunąć przedmiot z bazy przedmiotów </p>
+
+    <form method="post" action="{% url 'manager:confirmation' item.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Potwierdzam</button>
+    </form>
+</div>
+{% endblock %}

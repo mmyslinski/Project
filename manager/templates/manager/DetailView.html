@@ -1,0 +1,26 @@
+{% extends 'manager/base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block body %}
+
+    <div style="margin-left:8%">
+        <h1>{{ item.name }}</h1>
+
+        {% if item.photo %}
+            <img src="{{ item.photo.url }}">
+        {% else %}
+            <h3>Brak zdjęcia dla tego przedmiotu</h3>
+        {% endif %}
+
+        <h3>{{ item.category }}</h3>
+        <p>{{ item.description}}</p>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'manager:pickup' item.pk %}"><button type="submit" class="btn btn-primary">Zamów przedmiot</button></a>
+        {% else %}
+            <h3><a href="{% url 'manager:login' %}"><button type="submit" class="btn btn-primary">Zaloguj się</button></a>, aby zamówić przedmiot</h3>
+        {% endif %}
+    </div>
+
+{% endblock %}

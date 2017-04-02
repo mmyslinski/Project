@@ -1,0 +1,35 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+
+{% block title %}Wszystkie przedmioty{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {% for category in all_categories %}
+        <h1>{{ category.name }}</h1>
+        {% if category.item_set.all %}
+            {% for item in category.item_set.all %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">{{ item.name }}</h2>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail" href="{% url 'manager:detail' item.id %}">
+                            {% if item.photo %}
+                                <img class="img-responsive" src="{{ item.photo.url }}">
+                            {% else %}
+                                <h3>Niestety ten przedmiot nie ma dostępnego zdjęcia</h3>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3>Brak przedmiotów w tej kategorii</h3>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

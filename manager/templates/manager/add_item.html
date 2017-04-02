@@ -1,0 +1,13 @@
+{% extends 'manager/base.html' %}
+
+{% block title %}Dodaj przedmiot{% endblock %}
+
+{% block body %}
+<div style="margin-left:8%">
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'manager/base.html' %}
+
+{% block title %}Zaloguj się{% endblock %}
+
+{% block body %}
+<div style="margin-left:8%">
+    <h2>Zaloguj się</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">OK</button>
+    </form>
+</div>
+{% endblock %}
